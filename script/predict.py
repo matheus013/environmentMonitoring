@@ -12,8 +12,11 @@ x_scaler = MinMaxScaler()
 y_scaler = MinMaxScaler()
 
 import csv
+import sys
 
-with open('/home/matheus/projects/tensorflow-dtn/data.csv') as csvfile:
+filename = sys.argv[1]
+
+with open(filename) as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')
     for row in readCSV:
         X.append([int(row[1]),int(row[2])])

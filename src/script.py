@@ -1,3 +1,3 @@
-import sys
-
-print(sys.version)
+file = open('hello.out','w')
+file.write('Hello World')
+file.close()
