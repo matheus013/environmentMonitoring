@@ -24,8 +24,8 @@ public class App {
             @Override
             public void run() {
                 ScriptRun sr = new ScriptRun(
-                        "/home/matheus/IdeaProjects/dtn-cala/script/predict.py",
-                        "/home/matheus/IdeaProjects/dtn-cala/script/data.csv");
+                        "/script/predict.py",
+                        "/script/data.csv");
                 try {
                     sr.run();
                 } catch (IOException e) {
