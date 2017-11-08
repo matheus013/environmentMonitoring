@@ -1,7 +1,6 @@
 package laccan.devices;
 
 import laccan.gatewayApp.EnvironmentMonitor;
-import laccan.gatewayApp.Server;
 import net.tinyos.message.Message;
 import net.tinyos.message.MessageListener;
 import net.tinyos.message.MoteIF;
@@ -45,8 +44,8 @@ public class Micaz implements MessageListener  {
 	public void messageReceived(int dest_addr, Message msg) {
 		msDate = System.currentTimeMillis();	//Get current date
 		processPacket(msg);
-		printData(); //Display sensor data
-		Server.saveData(toServerString(msg)); //Send to cloud
+//		printData(); //Display sensor data
+//		Server.saveData(toServerString(msg)); //Send to cloud
 	}
 	
 	private void processPacket(Message message) {

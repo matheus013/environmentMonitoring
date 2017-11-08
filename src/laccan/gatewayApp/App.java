@@ -34,7 +34,15 @@ public class App {
             }
         };
 
+        TimerTask updateDataSample = new TimerTask() {
+            @Override
+            public void run() {}
+        };
+        // update global var predicts, interval 5 min
         timer.schedule(updateDataPredict, 0, 300000);
+        // refresh global var in caela
+        // pass data from the sensors to caela, interval 1 min
+        timer.schedule(updateDataSample, 0, 60000);
         Micaz micaz = new Micaz("serial@/dev/ttyUSB1:57600");
     }
 }
