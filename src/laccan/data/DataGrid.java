@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DataGrid {
     JCL_facade jcl;
@@ -26,9 +25,9 @@ public class DataGrid {
     public void realToFile() throws FileNotFoundException, UnsupportedEncodingException {
         PrintWriter writer = new PrintWriter("realSample.csv", "UTF-8");
         int line = 0;
-        for (Map.Entry<Integer, MicazMsg> map : realSample.entrySet()) {
-            writer.println(++line + "," + map.getKey() + ","
-                    + map.getValue().getElement_Intersema_data(0) / 10);
+        for (Integer key : realSample.keySet()) {
+            writer.println(++line + "," + key + ","
+                    + realSample.get(key).getElement_Intersema_data(0) / 10);
         }
         writer.close();
     }
