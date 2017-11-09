@@ -5,7 +5,6 @@ import interfaces.kernel.JCL_facade;
 import interfaces.kernel.JCL_result;
 import laccan.devices.MicazMsg;
 import laccan.memory.Memory;
-import laccan.memory.data.reduction.RandomReduction;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -27,9 +26,9 @@ public class DataGrid {
     public void realToFile() throws FileNotFoundException, UnsupportedEncodingException {
         PrintWriter writer = new PrintWriter("realSample.csv", "UTF-8");
         int line = 0;
-        for (Map.Entry<Integer, MicazMsg> msg : realSample) {
-            writer.println(++line + "," + msg.getKey() + ","
-                    + msg.getValue().getElement_Intersema_data(0) / 10);
+        for (Map.Entry<Integer, MicazMsg> map : realSample.entrySet()) {
+            writer.println(++line + "," + map.getKey() + ","
+                    + map.getValue().getElement_Intersema_data(0) / 10);
         }
         writer.close();
     }
