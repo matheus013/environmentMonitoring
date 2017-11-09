@@ -44,7 +44,7 @@ res_rscl = y_scaler.inverse_transform(res)
 
 Y_rscl = y_scaler.inverse_transform(y)
 
-file = open('predict.csv', 'w')
+file = open('predictSample.csv', 'w')
 for var in res_rscl:
     file.write(var)
 

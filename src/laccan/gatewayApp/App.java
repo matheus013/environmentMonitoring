@@ -9,20 +9,31 @@
 
 package laccan.gatewayApp;
 
+import data.DataGrid;
 import laccan.devices.Micaz;
 import utils.ScriptRun;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class App {
     public static void main(String[] args) {
+        DataGrid dataGrid = new DataGrid();
         @SuppressWarnings("unused")
         Timer timer = new Timer();
         TimerTask updateDataPredict = new TimerTask() {
             @Override
             public void run() {
+                try {
+                    dataGrid.realToFile();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 ScriptRun sr = new ScriptRun(
                         "/script/predict.py",
                         "/script/data.csv");
@@ -36,7 +47,9 @@ public class App {
 
         TimerTask updateDataSample = new TimerTask() {
             @Override
-            public void run() {}
+            public void run() {
+                dataGrid.updatePredictCloud();
+            }
         };
         // update global var predicts, interval 5 min
         timer.schedule(updateDataPredict, 0, 300000);
