@@ -1,7 +1,6 @@
 <component name="libraryTable">
   <library name="jython-standalone-2.7.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/jython-standalone-2.7.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/rxtx-2.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.12.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/slf4j-jdk14-1.7.12.jar!/" />
