@@ -1,7 +1,7 @@
-package memory.data.reduction;
+package laccan.memory.data.reduction;
 
 import laccan.devices.MicazMsg;
-import memory.Container;
+import laccan.memory.Container;
 
 public class KeepingAll extends Container{
 

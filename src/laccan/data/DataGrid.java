@@ -1,11 +1,12 @@
-package data;
+package laccan.data;
 
 import implementations.dm_kernel.user.JCL_FacadeImpl;
 import interfaces.kernel.JCL_facade;
 import interfaces.kernel.JCL_result;
 import laccan.devices.MicazMsg;
+import laccan.memory.Memory;
+import laccan.memory.data.reduction.RandomReduction;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -14,8 +15,8 @@ import java.util.Map;
 
 public class DataGrid {
     JCL_facade jcl;
-    protected HashMap<Point, MicazMsg> predictSample;
-    protected HashMap<Point, MicazMsg> realSample;
+    protected HashMap<Integer, MicazMsg> predictSample;
+    protected HashMap<Integer, MicazMsg> realSample;
 
     public DataGrid() {
         predictSample = new HashMap<>();
@@ -26,17 +27,17 @@ public class DataGrid {
     public void realToFile() throws FileNotFoundException, UnsupportedEncodingException {
         PrintWriter writer = new PrintWriter("realSample.csv", "UTF-8");
         int line = 0;
-        for (Map.Entry<Point, MicazMsg> msg : realSample) {
-            writer.println(++line + "," + msg.getKey().x + "," + msg.getKey().y + ","
+        for (Map.Entry<Integer, MicazMsg> msg : realSample) {
+            writer.println(++line + "," + msg.getKey() + ","
                     + msg.getValue().getElement_Intersema_data(0) / 10);
         }
         writer.close();
     }
 
     public void loadDataCloud() {
-        //read data from sensor
+        //read laccan.data from sensor
         JCL_result result = jcl.getValue("dataCollected");
-        realSample = (HashMap<Point, MicazMsg>) result.getCorrectResult();
+        realSample = (HashMap<Integer, MicazMsg>) result.getCorrectResult();
 
     }
 
@@ -45,5 +46,11 @@ public class DataGrid {
         if (!jcl.containsGlobalVar("dataPredict"))
             jcl.instantiateGlobalVar("dataPredict", predictSample);
         else jcl.setValueUnlocking("dataPredict", predictSample);
+    }
+
+    public void refreshRealSample() {
+        for (MicazMsg msg : Memory.getMemory().get()) {
+            realSample.put(msg.get_nodeid(), msg);
+        }
     }
 }

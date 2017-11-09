@@ -1,4 +1,4 @@
-package memory;
+package laccan.memory;
 
 import laccan.devices.MicazMsg;
 
@@ -17,8 +17,4 @@ public abstract class Container {
 	public ArrayList<MicazMsg> get() {
 		return (ArrayList<MicazMsg>) content.clone();
 	}
-	public void save(){
-
-	}
-
 }

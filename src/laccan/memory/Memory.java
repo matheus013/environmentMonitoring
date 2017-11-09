@@ -1,8 +1,9 @@
-package memory;
+package laccan.memory;
 
 import laccan.devices.MicazMsg;
-import memory.data.reduction.KeepingAll;
-import memory.data.reduction.RandomReduction;
+import laccan.memory.data.reduction.AllaReduction;
+import laccan.memory.data.reduction.KeepingAll;
+import laccan.memory.data.reduction.RandomReduction;
 
 public class Memory {
     private static KeepingAll keepingAll;
@@ -16,13 +17,11 @@ public class Memory {
         return keepingAll;
     }
 
-    public void buildRandomReduction() {
-        dataContainer = new RandomReduction(1000);
+    static public void buildRandomReduction() {
+        dataContainer = new RandomReduction(capacity);
     }
 
-    public void buildAllaReduction() {
-        dataContainer = new AllaReduction(1000);
-    }
+    static public void buildAllaReduction() { dataContainer = new AllaReduction(capacity);  }
 
     static public Container getMemory() {
         return dataContainer;

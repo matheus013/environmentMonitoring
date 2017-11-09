@@ -44,7 +44,7 @@ public class Micaz implements MessageListener  {
 	public void messageReceived(int dest_addr, Message msg) {
 		msDate = System.currentTimeMillis();	//Get current date
 		processPacket(msg);
-//		printData(); //Display sensor data
+//		printData(); //Display sensor laccan.data
 //		Server.saveData(toServerString(msg)); //Send to cloud
 	}
 	
@@ -106,7 +106,7 @@ public class Micaz implements MessageListener  {
 	
 	@SuppressWarnings("unused")
 	private void printData() {
-		System.out.println("Measured micaz data:");
+		System.out.println("Measured micaz laccan.data:");
 		System.out.println();
 		System.out.println("Node:                   "+nodeID);
 		System.out.println("NodeType:               "+"micaz");
@@ -125,7 +125,7 @@ public class Micaz implements MessageListener  {
 		System.out.println("date:\t\t\t" + msDate);
 	}
 	
-	//Save sensor data to a formatted server string
+	//Save sensor laccan.data to a formatted server string
 	@SuppressWarnings("unused")
 	private String toServerString(Message message) {
 		String data = String.format("nodeID=%s&nodeType=%s&"

@@ -9,9 +9,10 @@
 
 package laccan.gatewayApp;
 
-import data.DataGrid;
+import laccan.data.DataGrid;
 import laccan.devices.Micaz;
-import utils.ScriptRun;
+import laccan.memory.Memory;
+import laccan.utils.ScriptRun;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,11 +23,14 @@ import java.util.TimerTask;
 public class App {
     public static void main(String[] args) {
         DataGrid dataGrid = new DataGrid();
+        Memory.buildRandomReduction();
+        Memory.setCapacity(10);
         @SuppressWarnings("unused")
         Timer timer = new Timer();
         TimerTask updateDataPredict = new TimerTask() {
             @Override
             public void run() {
+                dataGrid.refreshRealSample();
                 try {
                     dataGrid.realToFile();
                 } catch (FileNotFoundException e) {
@@ -35,8 +39,8 @@ public class App {
                     e.printStackTrace();
                 }
                 ScriptRun sr = new ScriptRun(
-                        "/script/predict.py",
-                        "/script/data.csv");
+                        "/laccan/script/predict.py",
+                        "/laccan/script/data.csv");
                 try {
                     sr.run();
                 } catch (IOException e) {
@@ -54,7 +58,7 @@ public class App {
         // update global var predicts, interval 5 min
         timer.schedule(updateDataPredict, 0, 300000);
         // refresh global var in caela
-        // pass data from the sensors to caela, interval 1 min
+        // pass laccan.data from the sensors to caela, interval 1 min
         timer.schedule(updateDataSample, 0, 60000);
         Micaz micaz = new Micaz("serial@/dev/ttyUSB1:57600");
     }

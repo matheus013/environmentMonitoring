@@ -55,7 +55,7 @@ public class MicazMsg extends net.tinyos.message.Message {
 
     /**
      * Create a new MicazMsg using the given byte array
-     * as backing store, with the given base offset and data length.
+     * as backing store, with the given base offset and laccan.data length.
      */
     public MicazMsg(byte[] data, int base_offset, int data_length) {
         super(data, base_offset, data_length);

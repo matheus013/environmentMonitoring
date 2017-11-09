@@ -64,7 +64,7 @@ public class Server {
 			conn.setRequestProperty("charset", "UTF-8");
 			conn.setDoOutput(true);
 
-			//Write data to server
+			//Write laccan.data to server
 			DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
 			wr.writeBytes(data);
 
