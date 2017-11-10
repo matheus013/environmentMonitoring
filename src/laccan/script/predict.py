@@ -15,12 +15,20 @@ import csv
 import sys
 
 filename = sys.argv[1]
+passToCart = {}
+# open coordinates csv
+with open("toCartesian.csv") as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
+    for row in readCSV:
+        passToCart[int(row[0])] = [int(row[1]),int(row[2])]
 
+# open data csv
 with open(filename) as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')
     for row in readCSV:
-        X.append([int(row[1]),int(row[2])])
+        X.append(passToCart[int(row[1])])
         y.append([float(row[3])])
+
 X = np.array(X)
 y = np.array(y)
 X = x_scaler.fit_transform(X)
