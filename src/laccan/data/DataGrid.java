@@ -47,6 +47,7 @@ public class DataGrid {
     }
 
     public void refreshRealSample() {
+        realSample.clear();
         for (MicazMsg msg : Memory.getMemory().get()) {
             realSample.put(msg.get_nodeid(), msg);
         }

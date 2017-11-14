@@ -38,9 +38,7 @@ public class App {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                ScriptRun sr = new ScriptRun(
-                        "/laccan/script/predict.py",
-                        "/laccan/script/data.csv");
+                ScriptRun sr = new ScriptRun("/laccan/script/predict.py", "../realSample.csv");
                 try {
                     sr.run();
                 } catch (IOException e) {
@@ -56,10 +54,10 @@ public class App {
             }
         };
         // update global var predicts, interval 5 min
-        timer.schedule(updateDataPredict, 0, 300000);
+        timer.schedule(updateDataPredict, 1, 300000);
         // refresh global var in caela
         // pass laccan.data from the sensors to caela, interval 1 min
-        timer.schedule(updateDataSample, 0, 60000);
+        timer.schedule(updateDataSample, 1, 60000);
         Micaz micaz = new Micaz("serial@/dev/ttyUSB1:57600");
     }
 }

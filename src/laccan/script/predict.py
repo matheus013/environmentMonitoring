@@ -20,7 +20,7 @@ passToCart = {}
 with open("toCartesian.csv") as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')
     for row in readCSV:
-        passToCart[int(row[0])] = [int(row[1]),int(row[2])]
+        passToCart[int(row[0])] = [int(row[1]), int(row[2])]
 
 # open data csv
 with open(filename) as csvfile:
@@ -37,9 +37,9 @@ y = y_scaler.fit_transform(y)
 model = Sequential()
 model.add(Dense(1024, input_dim=2))
 model.add(Activation(K.relu))
-model.add(Dense(512,  activation='relu'))
-model.add(Dense(256,   activation='relu'))
-model.add(Dense(128,  activation='relu'))
+model.add(Dense(512, activation='relu'))
+model.add(Dense(256, activation='relu'))
+model.add(Dense(128, activation='relu'))
 model.add(Dense(1, activation='linear'))
 
 sgd = SGD(lr=0.1)
@@ -55,4 +55,3 @@ Y_rscl = y_scaler.inverse_transform(y)
 file = open('predictSample.csv', 'w')
 for var in res_rscl:
     file.write(var)
-
